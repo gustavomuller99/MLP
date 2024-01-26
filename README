@@ -1,0 +1,14 @@
+Programa que simula execução de um programa com escopo estático ou dinâmico
+
+Descrição da linguagem utilizada: 
+
+- Declaração de variáveis inteiras com inicialização obrigatória (var a = 5;)
+- Declaração de funções que recebem uma lista de parâmetros (pelo menos um) e um único retorno (fun foo(var bar) { ..; return c; };)
+- Declaração de blocos com chaves dentro de uma função ({ ... };)
+- Existem quatro operações aritimética (+, -, / e *) e uma de atribuição (=)
+- O nome das variáveis e funções devem ser apenas alfabéticos.
+- A linguagem é estatica, forte e explicitamente tipada (somente um tipo)
+O que não é possível fazer
+- Passar como parâmetro uma operação ou chamada de função, somente variáveis.
+
+O programa funciona realizando análise léxica e sintática da linguagem. A simulação da execução tem base na AST (abstract syntax tree) criada.
