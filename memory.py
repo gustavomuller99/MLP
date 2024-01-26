@@ -3,6 +3,7 @@
 class RA:
     def __init__(self):
         self.list = []
+        self.staticLevel = 0
 
     def addVariable(self, var):
         if len(list(filter(lambda x: x.name == var.name, self.list))) != 0: 

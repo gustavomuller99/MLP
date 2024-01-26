@@ -3,6 +3,7 @@ class Block():
     def __init__(self, fst):
         self.fst = fst
         self.next = None
+        self.staticLevel = None
 
     def addNext(self, next):
         self.next = next
@@ -11,7 +12,7 @@ class Block():
         return "{ }"
     
     def toLineString(self):
-        return "\n{\n" + self.fst.toLineString() + "\n};"
+        return "{ };"
 
 # FUNCAO
 class Fun():
@@ -20,6 +21,7 @@ class Fun():
         self.fst = fst
         self.snd = snd
         self.next = None
+        self.staticLevel = None
 
     def addNext(self, next):
         self.next = next

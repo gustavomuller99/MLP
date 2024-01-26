@@ -1,30 +1,36 @@
 from lexer import Lexer
 from syntax import Parser
 from dynamic import Dynamic
+from static import Static
 import os
+import argparse
 
 test = """
 var c = 0;
+var b = 0;
 
 fun testA(x) {
+  {
+    c = 1;
+  };
   return 3;
 };
 
 fun testB(y) {
+  b = 4;
   return 4;
 };
 
 fun main(a) {
   var b = 5;
   {
-    b = 3;
-    c = 4; 
-    var x = c;
-    x = 1;
+    c = 10;
+    b = 2;
   };
   c = testA(b) + testB(c);
   return 0;
 };
+
 """
 
 lexer = Lexer().get_lexer()
@@ -38,7 +44,13 @@ ast = parser.parse(tokens)
 pg.build_graph(ast)
 pg.graph.write_png("ast.png")
 
-context = Dynamic(ast)
+parser = argparse.ArgumentParser()
+parser.add_argument("-m", "--mode", help = "0 - estático / 1 - dinâmico")
+args = parser.parse_args()
+
+context = Static(ast)
+if args.mode == "1":
+  context = Dynamic(ast)
 
 while True:
   key = input()
