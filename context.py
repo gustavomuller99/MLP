@@ -65,15 +65,19 @@ class Context():
             self.current = self.current.next
 
     def printLine(self):
-        print("\nlinha atual: \n > " + self.current.toLineString())
+        print("\nLinha atual: \n > " + self.current.toLineString())
 
     def printMemory(self):
-        print("estado da memória: ")
+        print("Estado da memória: ")
         print("<====================>")
+        i = len(self.memory) - 1
         for ra in reversed(self.memory):
+            print("pos=[" + str(i) + "]")
+            print("staticLevel=" + str(ra.staticLevel))
             for var in ra.list:
                 print(var.name + ": " + str(var.value))
             print("<====================>")
+            i -= 1
 
     # verifica se chegou ao final do programa
     def end(self):

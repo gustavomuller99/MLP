@@ -9,7 +9,7 @@ test = """
 var c = 0;
 var b = 0;
 
-fun testA(x) {
+fun testA(x, k) {
   {
     c = 1;
   };
@@ -18,16 +18,16 @@ fun testA(x) {
 
 fun testB(y) {
   b = 4;
-  return 4;
+  return 4 + b;
 };
 
 fun main(a) {
-  var b = 5;
+  var b = 5 + 5 / 2;
   {
     c = 10;
     b = 2;
   };
-  c = testA(b) + testB(c);
+  c = testA(b, b) + testB(c);
   return 0;
 };
 
@@ -48,14 +48,18 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-m", "--mode", help = "0 - estático / 1 - dinâmico")
 args = parser.parse_args()
 
+show_type = "Estático"
 context = Static(ast)
 if args.mode == "1":
+  show_type = "Dinâmico"
   context = Dynamic(ast)
 
 while True:
   key = input()
   if key == "":
     os.system('clear')
+    print("Executando com contexto: " + show_type)
+    print()
     context.printMemory()
     context.printLine()
 
